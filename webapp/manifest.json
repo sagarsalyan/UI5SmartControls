@@ -15,7 +15,7 @@
 		},
 		"dataSources": {
 			"Northwind.svc": {
-				"uri": "https://cors-anywhere.herokuapp.com/services.odata.org/V2/Northwind/Northwind.svc/",
+				"uri": "/NorthWind/V2/Northwind/Northwind.svc/",
 				"type": "OData",
 				"settings": {
 					"localUri": "localService/metadata.xml",

@@ -1,12 +1,31 @@
 <mvc:View controllerName="app.SmartControls.controller.App" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m"
-	xmlns:smartTable="sap.ui.comp.smarttable">
+	xmlns:smartForm="sap.ui.comp.smartform" xmlns:smartTable="sap.ui.comp.smarttable" xmlns:smartField="sap.ui.comp.smartfield"
+	xmlns:smartList="sap.ui.comp.smartlist" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
 	<Shell id="shell">
 		<App id="app">
 			<pages>
 				<Page id="page" title="{i18n>title}">
 					<content>
-						<sap.ui.comp.smarttable:SmartTable xmlns:sap.ui.comp.smarttable="sap.ui.comp.smarttable" tableType="ResponsiveTable" header="Smart Table"
-							enableAutoBinding="true" id="table" entitySet="Products"/>
+						<VBox>
+							<smartForm:SmartForm id="smartForm" app:defaultCheckBoxDisplayBehaviour="OnOff" app:defaultDropDownDisplayBehaviour="idAndDescription"
+								editTogglable="true" editToggled="handleEditToggled" title="Smart Form" binding="{/Products(1)}">
+								<smartForm:Group label="Product">
+									<smartForm:GroupElement>
+										<smartField:SmartField textLabel="ID" value="{ProductID}"/>
+									</smartForm:GroupElement>
+									<smartForm:GroupElement label="IGNORE">
+										<smartField:SmartField textLabel="{ProductName}" value="{ProductName}"/>
+									</smartForm:GroupElement>
+								</smartForm:Group>
+							</smartForm:SmartForm>
+							<smartTable:SmartTable tableType="ResponsiveTable" header="Smart Table" enableAutoBinding="true" id="table" entitySet="Products"></smartTable:SmartTable>
+							<smartList:SmartList id="EmployeeST" entitySet="Employees" header="Smart List" showRowCount="true" showFullScreenButton="true"
+								enableAutoBinding="true" selectFields="EmployeeID,FirstName,HomePhone">
+								<smartList:listItemTemplate>
+									<StandardListItem title="{EmployeeID}" info="{FirstName}" description="{HomePhone}"/>
+								</smartList:listItemTemplate>
+							</smartList:SmartList>
+						</VBox>
 					</content>
 				</Page>
 			</pages>
